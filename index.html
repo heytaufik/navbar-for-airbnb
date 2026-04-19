@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Airbnb Clone - Clean Version</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Circular', -apple-system, sans-serif;
+        }
+
+        /* Navbar Styling */
+        header {
+            border-bottom: 1px solid #ebebeb;
+            padding: 15px 0;
+            background: white;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo img {
+            width: 102px;
+            height: auto;
+        }
+
+        .right ul {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+        }
+
+        .right ul li {
+            font-weight: 500;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        /* Hero Section (Gap Fix) */
+        .first {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 22px;
+            padding: 80px 20px; /* Upar aur neeche ka space set hai */
+            text-align: center;
+        }
+
+        .first span {
+            font-size: 33px;
+            font-weight: bold;
+        }
+
+        .first p {
+            font-size: 18px;
+            width: 50vw;
+            color: #717171;
+        }
+
+        /* Card Container Styling */
+        .card-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 40px 20px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .card {
+            position: relative;
+            width: 280px;
+            height: 380px;
+            border-radius: 15px;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover img {
+            transform: scale(1.05);
+        }
+
+        .card-title {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+            text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .airbnb-footer {
+  background-color: #f7f7f7;
+  padding: 48px 8% 0 8%; /* Side padding ko flexible rakha hai */
+  font-family: 'Circular', -apple-system, 'BlinkMacSystemFont', 'Roboto', sans-serif;
+  color: #222222;
+  border-top: 1px solid #dddddd;
+}
+
+/* 1. Header and Tabs Section */
+.footer-inspiration h3 {
+  font-size: 22px;
+  font-weight: 600; /* Boldness badha di */
+  margin-bottom: 8px;
+}
+
+.tabs {
+  display: flex;
+  gap: 24px;
+  margin-top: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #717171;
+}
+
+.tabs span {
+  padding-bottom: 12px;
+  cursor: pointer;
+}
+
+.tabs .active {
+  color: #222222;
+  border-bottom: 2px solid #222222; /* Black line exactly niche */
+}
+
+/* 2. Locations Grid - Isse Alignment sahi hogi */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr); 
+  row-gap: 24px;
+  column-gap: 8px;
+  padding: 32px 0 48px 0;
+}
+
+.location-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.location-item strong {
+  font-size: 14px;
+  font-weight: 600;
+  color: #222222;
+}
+
+.location-item span {
+  font-size: 14px;
+  color: #717171;
+  font-weight: 400;
+}
+
+/* 3. Horizontal Line Styling */
+hr {
+  border: 0;
+  border-top: 1px solid #dddddd;
+  margin: 0;
+}
+
+/* 4. Bottom Links Section */
+.footer-links {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 48px 0;
+}
+
+.link-column h4 {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #222222;
+}
+
+.link-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.link-column li {
+  font-size: 14px;
+  margin-bottom: 12px;
+  color: #222222;
+  font-weight: 400;
+}
+
+.link-column li:hover {
+  text-decoration: underline;
+}
+.sub-footer {
+  display: flex;
+  justify-content: space-between; /* Left aur Right ko door karne ke liye */
+  align-items: center;
+  padding: 24px 0;
+  border-top: 1px solid #dddddd;
+  font-size: 14px;
+  color: #222222;
+  margin-top: 40px;
+}
+
+.sub-footer-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sub-links {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sub-links li::before {
+  content: " · "; /* Links ke beech mein dot lagane ke liye */
+  padding: 0 8px;
+}
+
+.sub-links a {
+  text-decoration: none;
+  color: #222222;
+}
+
+.sub-links a:hover {
+  text-decoration: underline;
+}
+
+.sub-footer-right {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.settings {
+  display: flex;
+  gap: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.social-icons {
+  display: flex;
+  gap: 16px;
+  font-size: 18px;
+}
+
+.social-icons i {
+  cursor: pointer;
+}
+.main-container {
+    padding: 0 80px; /* Side padding bohot zaroori hai */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.links-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; /* Teen equal columns */
+    padding: 48px 0; /* Upar aur neeche gap */
+}
+
+.separator {
+    border: 0;
+    border-top: 1px solid #DDDDDD; /* Light grey line */
+    margin: 0;
+}
+
+/* Bottom Bar settings */
+.bottom-bar {
+    display: flex;
+    justify-content: space-between;
+    padding: 24px 0;
+    font-size: 14px;
+}
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/Airbnb_Logo_B%C3%A9lo.svg" alt="Logo">
+            </div>
+            <div class="right">
+                <ul>
+                    <li>Products <span>&#9662;</span></li>
+                    <li>Pricing <span>&#9662;</span></li>
+                    <li>Resources <span>&#9662;</span></li>
+                    <li>About us <span>&#9662;</span></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="first">
+            <span>"Where comfort meets your wanderlust."</span>
+            <p>
+                Step away from the rush and into a space crafted for your peace.
+                From cozy corners to breathtaking views, find a sanctuary that speaks to your soul.
+            </p>
+        </section>
+
+        <div class="card-container">
+            <div class="card">
+                <a href="goa.dd.html"> 
+                    <img src="goa.1jpg/9522cb8735d5021dbfe251d93f55acce.jpg" alt="goa 1">
+                </a>
+   
+                <img src="goa.1jpg/9522cb8735d5021dbfe251d93f55acce.jpg" alt="Goa 1">
+                <div class="card-title">Goa, India</div>
+            </div>
+
+            <div class="card">
+                <img src="goa.beach.jpg/cf9ce40096a13dc927c0f9959470a6cc.jpg" alt="Goa 2">
+                <div class="card-title">Goa Beach Homes</div>
+            </div>
+
+            <div class="card">
+                <img src="goa.hillside.jpg/0ae7fd0679478c232025ab98d4990cea.jpg" alt="Goa 3">
+                <div class="card-title">Goa Hillside Villa</div>
+            </div>
+
+            <div class="card">
+                <img src="goa.homes.jpg/b94dd3b52794ce035c3b0ceca48edc6e.jpg" alt="Goa 4">
+                <div class="card-title">Goa Private Homes</div>
+                
+            </div>
+        </div>
+        <div class="card-container">
+            
+            <div class="card">
+                <img src="home.1/home in mumbai.jpg" alt="Goa 5">
+                <div class="card-title">Home in Mumbai, India</div>
+            </div>
+
+            <div class="card">
+                <img src="home.2jpg/home mumbai2.jpg" alt="Goa 6">
+                <div class="card-title">Beach House</div>
+            </div>
+
+            <div class="card">
+                <img src="home mumbai3.jpg" alt="Goa 7">
+                <div class="card-title">Hillside Villa in Mumbai</div>
+            </div>
+
+            <div class="card">
+                <img src="home.4jpg/home mumbai4.jpg" alt="Goa 8">
+                <div class="card-title">Private Homes in Mumbai</div>
+                
+            </div>
+            <div class="card-container">
+            <div class="card">
+                <img src="banglow.1jpg/banglow.jpg" alt="Goa 9">
+                <div class="card-title">Greec, Europe</div>
+            </div>
+
+            <div class="card">
+                <img src="banglow.2jpg/banglow2.jpg" alt="Goa 10">
+                <div class="card-title">Greec , Europe</div>
+            </div>
+
+            <div class="card">
+                <img src="banglow.3jpg/banglow3.jpg" alt="Goa 11">
+                <div class="card-title">Greec , Europe</div>
+            </div>
+
+            <div class="card">
+                <img src="banglow.4jpg/bnaglow4.jpg" alt="Goa 12">
+                <div class="card-title">Greec , Europe</div>
+                
+            </div>
+        </div>
+        <div class="card-container">
+            <div class="card">
+                <img src="cottage.1jpg/cottage1.jpg" alt="Goa 13">
+                <div class="card-title">Cottage in damman India</div>
+            </div>
+
+            <div class="card">
+                <img src="cottage.1jpg/cottage.2jpg/cottage2.jpg" alt="Goa 14">
+                <div class="card-title">Cottage in damman India</div>
+            </div>
+
+            <div class="card">
+                <img src="cottage.3jpg/cottge3.jpg" alt="Goa 15">
+                <div class="card-title">Cottage in damman India</div>
+            </div>
+
+            <div class="card">
+                <img src="cottage.4jpg/cootage4.jpg" alt="Goa 16">
+                <div class="card-title">Cottage in damman India</div>
+                
+            </div>
+        </div>
+    </main>
+    
+
+</body>
+</html>
+<footer class="airbnb-footer">
+  <div class="footer-inspiration">
+    <h3>Inspiration for future getaways</h3>
+    <div class="tabs">
+      <span class="active">Popular</span>
+      <span>Arts & culture</span>
+      <span>Beach</span>
+      <span>Mountains</span>
+      <span>Outdoors</span>
+      <span>Things to do</span>
+    </div>
+    <hr>
+    <div class="grid-container">
+      <div class="location-item"><strong>Cleveland</strong><span>Monthly Rentals</span></div>
+      <div class="location-item"><strong>Charlotte</strong><span>Villa rentals</span></div>
+      <div class="location-item"><strong>San Juan</strong><span>Villa rentals</span></div>
+      <div class="location-item"><strong>Gulf Shores</strong><span>Flat rentals</span></div>
+      <div class="location-item"><strong>San Antonio</strong><span>Apartment rentals</span></div>
+      <div class="location-item"><strong>Savannah</strong><span>Villa rentals</span></div>
+      </div>
+  </div>
+
+  <hr>
+
+  <div class="footer-links">
+    <div class="link-column">
+      <h4>Support</h4>
+      <ul>
+        <li>Help Centre</li>
+        <li>Get help with a safety issue</li>
+        <li>AirCover</li>
+        <li>Anti-discrimination</li>
+        <li>Disability support</li>
+      </ul>
+    </div>
+    <div class="link-column">
+      <h4>Hosting</h4>
+      <ul>
+        <li>Airbnb your home</li>
+        <li>Airbnb your experience</li>
+        <li>Hosting resources</li>
+        <li>Community forum</li>
+      </ul>
+    </div>
+    <div class="link-column">
+      <h4>Airbnb</h4>
+      <ul>
+        <li>Newsroom</li>
+        <li>Learn about new features</li>
+        <li>Careers</li>
+        <li>Investors</li>
+      </ul>
+    </div>
+  </div>
+</footer>
+<div class="sub-footer">
+  <div class="sub-footer-left">
+    <span>© 2026 Airbnb, Inc.</span>
+    <ul class="sub-links">
+      <li><a href="#">Privacy</a></li>
+      <li><a href="#">Terms</a></li>
+      <li><a href="#">Sitemap</a></li>
+      <li><a href="#">Company details</a></li>
+    </ul>
+  </div>
+
+  <div class="sub-footer-right">
+    <div class="settings">
+      <span class="icon-link"><i class="fa-solid fa-globe"></i> English (IN)</span>
+      <span class="icon-link">₹ INR</span>
+    </div>
+    <div class="social-icons">
+      <i class="fa-brands fa-facebook-f"></i>
+      <i class="fa-brands fa-x-twitter"></i>
+      <i class="fa-brands fa-instagram"></i>
+    </div>
+  </div>
+</div>
