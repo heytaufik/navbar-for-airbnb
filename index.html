@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Airbnb Clone - Clean Version</title>
+    <title>Airbnb Clone - 4 Column Grid</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* Basic Reset */
         * {
@@ -15,7 +14,6 @@
             font-family: 'Circular', -apple-system, sans-serif;
         }
 
-        /* Navbar Styling */
         header {
             border-bottom: 1px solid #ebebeb;
             padding: 15px 0;
@@ -27,10 +25,11 @@
 
         nav {
             display: flex;
-            justify-content: space-around;
+            justify-content: space-between;
             align-items: center;
             max-width: 1200px;
             margin: 0 auto;
+            padding: 0 20px;
         }
 
         .logo img {
@@ -50,14 +49,14 @@
             font-size: 15px;
         }
 
-        /* Hero Section (Gap Fix) */
+        /* Hero Section */
         .first {
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            gap: 22px;
-            padding: 80px 20px; /* Upar aur neeche ka space set hai */
+            gap: 15px;
+            padding: 60px 20px;
             text-align: center;
         }
 
@@ -68,29 +67,35 @@
 
         .first p {
             font-size: 18px;
-            width: 50vw;
+            max-width: 600px;
             color: #717171;
         }
 
-        /* Card Container Styling */
+        /* --- Updated Card Container for 4-Column Grid --- */
         .card-container {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
-            padding: 40px 20px;
-            max-width: 1300px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* Force 4 equal columns */
+            gap: 24px;
+            padding: 20px;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
         .card {
-            position: relative;
-            width: 280px;
-            height: 380px;
+            display: flex; /* Flex used for image and text alignment */
+            flex-direction: column;
             border-radius: 15px;
-            overflow: hidden;
             cursor: pointer;
+            overflow: hidden;
+            background: white; /* Optional: for cleaner look if text is outside image */
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .card-image {
+            width: 100%;
+            aspect-ratio: 16 / 10; /* Fixed aspect ratio for the image itself */
+            overflow: hidden;
         }
 
         .card img {
@@ -100,201 +105,103 @@
             transition: transform 0.3s ease;
         }
 
+        .card:hover {
+            transform: translateY(-5px); /* Lift card on hover */
+        }
+
         .card:hover img {
-            transform: scale(1.05);
+            transform: scale(1.05); /* Slight scale on image inside card */
         }
 
+        /* --- Updated Card Title Below Image --- */
         .card-title {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            color: white;
+            padding: 15px;
+            color: #222; /* Dark text below image */
             font-weight: bold;
-            font-size: 1.2rem;
-            text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+            font-size: 1.1rem;
+            text-align: left;
         }
+
+        /* Footer Styling */
         .airbnb-footer {
-  background-color: #f7f7f7;
-  padding: 48px 8% 0 8%; /* Side padding ko flexible rakha hai */
-  font-family: 'Circular', -apple-system, 'BlinkMacSystemFont', 'Roboto', sans-serif;
-  color: #222222;
-  border-top: 1px solid #dddddd;
-}
+            background-color: #f7f7f7;
+            padding: 48px 20px;
+            border-top: 1px solid #dddddd;
+            margin-top: 50px;
+        }
 
-/* 1. Header and Tabs Section */
-.footer-inspiration h3 {
-  font-size: 22px;
-  font-weight: 600; /* Boldness badha di */
-  margin-bottom: 8px;
-}
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
-.tabs {
-  display: flex;
-  gap: 24px;
-  margin-top: 12px;
-  font-size: 14px;
-  font-weight: 500;
-  color: #717171;
-}
+        .footer-inspiration h3 {
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
 
-.tabs span {
-  padding-bottom: 12px;
-  cursor: pointer;
-}
+        .tabs {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #717171;
+            border-bottom: 1px solid #ddd;
+        }
 
-.tabs .active {
-  color: #222222;
-  border-bottom: 2px solid #222222; /* Black line exactly niche */
-}
+        .tabs span {
+            padding-bottom: 12px;
+            cursor: pointer;
+        }
 
-/* 2. Locations Grid - Isse Alignment sahi hogi */
-.grid-container {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr); 
-  row-gap: 24px;
-  column-gap: 8px;
-  padding: 32px 0 48px 0;
-}
+        .tabs .active {
+            color: #222;
+            border-bottom: 2px solid #222;
+            font-weight: 600;
+        }
 
-.location-item {
-  display: flex;
-  flex-direction: column;
-}
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 24px;
+            padding: 24px 0;
+        }
 
-.location-item strong {
-  font-size: 14px;
-  font-weight: 600;
-  color: #222222;
-}
+        .location-item strong { font-size: 14px; display: block; }
+        .location-item span { font-size: 14px; color: #717171; }
 
-.location-item span {
-  font-size: 14px;
-  color: #717171;
-  font-weight: 400;
-}
+        .footer-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            padding: 40px 0;
+            border-top: 1px solid #ddd;
+        }
 
-/* 3. Horizontal Line Styling */
-hr {
-  border: 0;
-  border-top: 1px solid #dddddd;
-  margin: 0;
-}
+        .link-column h4 { font-size: 14px; margin-bottom: 15px; }
+        .link-column ul { list-style: none; }
+        .link-column li { font-size: 14px; margin-bottom: 10px; color: #222; cursor: pointer; }
+        .link-column li:hover { text-decoration: underline; }
 
-/* 4. Bottom Links Section */
-.footer-links {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  padding: 48px 0;
-}
+        .sub-footer {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 20px;
+            border-top: 1px solid #ddd;
+            font-size: 14px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
 
-.link-column h4 {
-  font-size: 14px;
-  font-weight: 600;
-  margin-bottom: 12px;
-  color: #222222;
-}
-
-.link-column ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.link-column li {
-  font-size: 14px;
-  margin-bottom: 12px;
-  color: #222222;
-  font-weight: 400;
-}
-
-.link-column li:hover {
-  text-decoration: underline;
-}
-.sub-footer {
-  display: flex;
-  justify-content: space-between; /* Left aur Right ko door karne ke liye */
-  align-items: center;
-  padding: 24px 0;
-  border-top: 1px solid #dddddd;
-  font-size: 14px;
-  color: #222222;
-  margin-top: 40px;
-}
-
-.sub-footer-left {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.sub-links {
-  display: flex;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.sub-links li::before {
-  content: " · "; /* Links ke beech mein dot lagane ke liye */
-  padding: 0 8px;
-}
-
-.sub-links a {
-  text-decoration: none;
-  color: #222222;
-}
-
-.sub-links a:hover {
-  text-decoration: underline;
-}
-
-.sub-footer-right {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-}
-
-.settings {
-  display: flex;
-  gap: 16px;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.social-icons {
-  display: flex;
-  gap: 16px;
-  font-size: 18px;
-}
-
-.social-icons i {
-  cursor: pointer;
-}
-.main-container {
-    padding: 0 80px; /* Side padding bohot zaroori hai */
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.links-columns {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr; /* Teen equal columns */
-    padding: 48px 0; /* Upar aur neeche gap */
-}
-
-.separator {
-    border: 0;
-    border-top: 1px solid #DDDDDD; /* Light grey line */
-    margin: 0;
-}
-
-/* Bottom Bar settings */
-.bottom-bar {
-    display: flex;
-    justify-content: space-between;
-    padding: 24px 0;
-    font-size: 14px;
-}
+        .sub-footer-left { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .sub-links { display: flex; list-style: none; gap: 10px; }
+        .sub-links a { text-decoration: none; color: #222; }
+        
+        .sub-footer-right { display: flex; align-items: center; gap: 24px; }
+        .social-icons { display: flex; gap: 15px; font-size: 18px; }
     </style>
 </head>
 <body>
@@ -306,10 +213,10 @@ hr {
             </div>
             <div class="right">
                 <ul>
-                    <li>Products <span>&#9662;</span></li>
-                    <li>Pricing <span>&#9662;</span></li>
-                    <li>Resources <span>&#9662;</span></li>
-                    <li>About us <span>&#9662;</span></li>
+                    <li>Products ▾</li>
+                    <li>Pricing ▾</li>
+                    <li>Resources ▾</li>
+                    <li>About us ▾</li>
                 </ul>
             </div>
         </nav>
@@ -318,184 +225,205 @@ hr {
     <main>
         <section class="first">
             <span>"Where comfort meets your wanderlust."</span>
-            <p>
-                Step away from the rush and into a space crafted for your peace.
-                From cozy corners to breathtaking views, find a sanctuary that speaks to your soul.
-            </p>
+            <p>Step away from the rush and into a space crafted for your peace.</p>
         </section>
 
         <div class="card-container">
             <div class="card">
-                <a href="goa.dd.html"> 
-                    <img src="goa.1jpg/9522cb8735d5021dbfe251d93f55acce.jpg" alt="">
-                </a>
-   
-                <img src="goa.1jpg/9522cb8735d5021dbfe251d93f55acce.jpg" alt="">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80" alt="Beautiful Goa Beach Villa">
+                </div>
                 <div class="card-title">Goa, India</div>
             </div>
-
             <div class="card">
-                <img src="goa.beach.jpg/cf9ce40096a13dc927c0f9959470a6cc.jpg" alt="">
-                <div class="card-title">Goa Beach Homes</div>
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=800&q=80" alt="Modern Apartment in Mumbai">
+                </div>
+                <div class="card-title">Mumbai, India</div>
             </div>
-
             <div class="card">
-                <img src="goa.hillside.jpg/0ae7fd0679478c232025ab98d4990cea.jpg" alt=">
-                <div class="card-title">Goa Hillside Villa</div>
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=800&q=80" alt="Luxury Villa in Greece">
+                </div>
+                <div class="card-title">Greece, Europe</div>
             </div>
-
             <div class="card">
-                <img src="goa.homes.jpg/b94dd3b52794ce035c3b0ceca48edc6e.jpg" alt="">
-                <div class="card-title">Goa Private Homes</div>
-                
-            </div>
-        </div>
-        <div class="card-container">
-            
-            <div class="card">
-                <img src="home.1/home in mumbai.jpg" alt="">
-                <div class="card-title">Home in Mumbai, India</div>
-            </div>
-
-            <div class="card">
-                <img src="home.2jpg/home mumbai2.jpg" alt="">
-                <div class="card-title">Beach House</div>
-            </div>
-
-            <div class="card">
-                <img src="home mumbai3.jpg" alt="">
-                <div class="card-title">Hillside Villa in Mumbai</div>
-            </div>
-
-            <div class="card">
-                <img src="home.4jpg/home mumbai4.jpg" alt="">
-                <div class="card-title">Private Homes in Mumbai</div>
-                
-            </div>
-            <div class="card-container">
-            <div class="card">
-                <img src="banglow.1jpg/banglow.jpg" alt="">
-                <div class="card-title">Greec, Europe</div>
-            </div>
-
-            <div class="card">
-                <img src="banglow.2jpg/banglow2.jpg" alt="">
-                <div class="card-title">Greec , Europe</div>
-            </div>
-
-            <div class="card">
-                <img src="banglow.3jpg/banglow3.jpg" alt="">
-                <div class="card-title">Greec , Europe</div>
-            </div>
-
-            <div class="card">
-                <img src="banglow.4jpg/bnaglow4.jpg" alt="">
-                <div class="card-title">Greec , Europe</div>
-                
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=800&q=80" alt="Cozy Daman Cottage">
+                </div>
+                <div class="card-title">Cottage in Daman</div>
             </div>
         </div>
         <div class="card-container">
             <div class="card">
-                <img src="cottage.1jpg/cottage1.jpg" alt="">
-                <div class="card-title">Cottage in damman India</div>
+                <div class="card-image">
+                    <img src="https://i.pinimg.com/736x/9f/1d/f5/9f1df5a9225da7ac6503612e1e03de1e.jpg" alt="Beautiful Goa Beach Villa">
+                </div>
+                <div class="card-title">Kerala, India</div>
             </div>
-
             <div class="card">
-                <img src="cottage.1jpg/cottage.2jpg/cottage2.jpg" alt="">
-                <div class="card-title">Cottage in damman India</div>
+                <div class="card-image">
+                    <img src="https://i.pinimg.com/736x/6f/81/ea/6f81ea47b8e6ca7f0b77d31199bd4c65.jpg" alt="Modern Apartment in Mumbai">
+                </div>
+                <div class="card-title">deev, India</div>
             </div>
-
             <div class="card">
-                <img src="cottage.3jpg/cottge3.jpg" alt="">
-                <div class="card-title">Cottage in damman India</div>
+                <div class="card-image">
+                    <img src="https://i.pinimg.com/1200x/34/85/49/34854932ef8343a2b3616e48fa72c30f.jpg" alt="Luxury Villa in Greece">
+                </div>
+                <div class="card-title">Europe</div>
             </div>
-
             <div class="card">
-                <img src="cottage.4jpg/cootage4.jpg" alt="">
-                <div class="card-title">Cottage in damman India</div>
-                
+                <div class="card-image">
+                    <img src="https://i.pinimg.com/736x/f2/ec/e0/f2ece0b28028939afdb9fef492952398.jpg" alt="Cozy Daman Cottage">
+                </div>
+                <div class="card-title">Cottage in europe</div>
+            </div>
+        </div>
+        <div class="card-container">
+            <div class="card">
+                <div class="card-image">
+                    <img src="https://i.pinimg.com/736x/13/67/6f/13676fdc98af9b329f30a154e98d328a.jpg" alt="Beautiful Goa Beach Villa">
+                </div>
+                <div class="card-title">Goa, India</div>
+            </div>
+            <div class="card">
+                <div class="card-image">
+                    <img src="https://i.pinimg.com/736x/38/07/13/380713f30d273cc9e128ecd921f84109.jpg" alt="Modern Apartment in Mumbai">
+                </div>
+                <div class="card-title">Mumbai, India</div>
+            </div>
+            <div class="card">
+                <div class="card-image">
+                    <img src="https://i.pinimg.com/1200x/67/79/7a/67797af3801590d0c8e46975b5dec62c.jpg" alt="Luxury Villa in Greece">
+                </div>
+                <div class="card-title">Greece, east europe</div>
+            </div>
+            <div class="card">
+                <div class="card-image">
+                    <img src="https://i.pinimg.com/736x/6d/83/5f/6d835f4da3b2477895262dbc702848f9.jpg" alt="Cozy Daman Cottage">
+                </div>
+                <div class="card-title">Cottage in Mountain</div>
+            </div>
+        </div>
+        <div class="card-container">
+            <div class="card">
+                <div class="card-image">
+                    <img src="https://i.pinimg.com/736x/34/bb/66/34bb66d55fe7fd66b29465921ea1d5d1.jpg" alt="Beautiful Goa Beach Villa">
+                </div>
+                <div class="card-title">karnataka, India</div>
+            </div>
+            <div class="card">
+                <div class="card-image">
+                    <img src="https://i.pinimg.com/1200x/4c/db/e8/4cdbe8016ea557c82374d02bd2155d7e.jpg" alt="Modern Apartment in Mumbai">
+                </div>
+                <div class="card-title">kashmir, India</div>
+            </div>
+            <div class="card">
+                <div class="card-image">
+                    <img src="https://i.pinimg.com/1200x/62/89/ef/6289ef12824285bdd80db12be1b1b943.jpg" alt="Luxury Villa in Greece">
+                </div>
+                <div class="card-title">Greece, Europe west</div>
+            </div>
+            <div class="card">
+                <div class="card-image">
+                    <img src="https://i.pinimg.com/1200x/31/15/04/311504aeab6fcc04c84cfc8fbb09285f.jpg" alt="Cozy Daman Cottage">
+                </div>
+                <div class="card-title">Cottage in Kashmir</div>
+            </div>
+        </div>
+        <div class="card-container">
+            <div class="card">
+                <div class="card-image">
+                    <img src="https://i.pinimg.com/1200x/91/18/be/9118beb1eb9b03f62ce680574b435f66.jpg" alt="Beautiful Goa Beach Villa">
+                </div>
+                <div class="card-title">noida, India</div>
+            </div>
+            <div class="card">
+                <div class="card-image">
+                    <img src="https://i.pinimg.com/736x/50/e9/3d/50e93de4069c562eb1b59ec7c1e910d2.jpg" alt="Modern Apartment in Mumbai">
+                </div>
+                <div class="card-title">Mumbai, India</div>
+            </div>
+            <div class="card">
+                <div class="card-image">
+                    <img src="https://i.pinimg.com/736x/bd/21/68/bd21683a077d127949e5230d34137606.jpg" alt="Luxury Villa in Greece">
+                </div>
+                <div class="card-title">Greece, ethens</div>
+            </div>
+            <div class="card">
+                <div class="card-image">
+                    <img src="https://i.pinimg.com/736x/3a/f0/cc/3af0cc8dc93e9aaeb0c202ab4d0f2294.jpg" alt="Cozy Daman Cottage">
+                </div>
+                <div class="card-title">Cottage in new york</div>
             </div>
         </div>
     </main>
-    
+
+    <footer class="airbnb-footer">
+        <div class="footer-content">
+            <div class="footer-inspiration">
+                <h3>Inspiration for future getaways</h3>
+                <div class="tabs">
+                    <span class="active">Popular</span>
+                    <span>Arts & culture</span>
+                    <span>Beach</span>
+                    <span>Mountains</span>
+                </div>
+                <div class="grid-container">
+                    <div class="location-item"><strong>Cleveland</strong><span>Monthly Rentals</span></div>
+                    <div class="location-item"><strong>Charlotte</strong><span>Villa rentals</span></div>
+                    <div class="location-item"><strong>San Juan</strong><span>Villa rentals</span></div>
+                    <div class="location-item"><strong>Gulf Shores</strong><span>Flat rentals</span></div>
+                </div>
+            </div>
+
+            <div class="footer-links">
+                <div class="link-column">
+                    <h4>Support</h4>
+                    <ul>
+                        <li>Help Centre</li>
+                        <li>AirCover</li>
+                        <li>Anti-discrimination</li>
+                    </ul>
+                </div>
+                <div class="link-column">
+                    <h4>Hosting</h4>
+                    <ul>
+                        <li>Airbnb your home</li>
+                        <li>Hosting resources</li>
+                        <li>Community forum</li>
+                    </ul>
+                </div>
+                <div class="link-column">
+                    <h4>Airbnb</h4>
+                    <ul>
+                        <li>Newsroom</li>
+                        <li>Careers</li>
+                        <li>Investors</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="sub-footer">
+        <div class="sub-footer-left">
+            <span>© 2026 Airbnb, Inc.</span>
+            <ul class="sub-links">
+                <li>· <a href="#">Privacy</a></li>
+                <li>· <a href="#">Terms</a></li>
+                <li>· <a href="#">Sitemap</a></li>
+            </ul>
+        </div>
+        <div class="sub-footer-right">
+            <div class="social-icons">
+                <i class="fa-brands fa-facebook-f"></i>
+                <i class="fa-brands fa-x-twitter"></i>
+                <i class="fa-brands fa-instagram"></i>
+            </div>
+        </div>
+    </div>
 
 </body>
 </html>
-<footer class="airbnb-footer">
-  <div class="footer-inspiration">
-    <h3>Inspiration for future getaways</h3>
-    <div class="tabs">
-      <span class="active">Popular</span>
-      <span>Arts & culture</span>
-      <span>Beach</span>
-      <span>Mountains</span>
-      <span>Outdoors</span>
-      <span>Things to do</span>
-    </div>
-    <hr>
-    <div class="grid-container">
-      <div class="location-item"><strong>Cleveland</strong><span>Monthly Rentals</span></div>
-      <div class="location-item"><strong>Charlotte</strong><span>Villa rentals</span></div>
-      <div class="location-item"><strong>San Juan</strong><span>Villa rentals</span></div>
-      <div class="location-item"><strong>Gulf Shores</strong><span>Flat rentals</span></div>
-      <div class="location-item"><strong>San Antonio</strong><span>Apartment rentals</span></div>
-      <div class="location-item"><strong>Savannah</strong><span>Villa rentals</span></div>
-      </div>
-  </div>
-
-  <hr>
-
-  <div class="footer-links">
-    <div class="link-column">
-      <h4>Support</h4>
-      <ul>
-        <li>Help Centre</li>
-        <li>Get help with a safety issue</li>
-        <li>AirCover</li>
-        <li>Anti-discrimination</li>
-        <li>Disability support</li>
-      </ul>
-    </div>
-    <div class="link-column">
-      <h4>Hosting</h4>
-      <ul>
-        <li>Airbnb your home</li>
-        <li>Airbnb your experience</li>
-        <li>Hosting resources</li>
-        <li>Community forum</li>
-      </ul>
-    </div>
-    <div class="link-column">
-      <h4>Airbnb</h4>
-      <ul>
-        <li>Newsroom</li>
-        <li>Learn about new features</li>
-        <li>Careers</li>
-        <li>Investors</li>
-      </ul>
-    </div>
-  </div>
-</footer>
-<div class="sub-footer">
-  <div class="sub-footer-left">
-    <span>© 2026 Airbnb, Inc.</span>
-    <ul class="sub-links">
-      <li><a href="#">Privacy</a></li>
-      <li><a href="#">Terms</a></li>
-      <li><a href="#">Sitemap</a></li>
-      <li><a href="#">Company details</a></li>
-    </ul>
-  </div>
-
-  <div class="sub-footer-right">
-    <div class="settings">
-      <span class="icon-link"><i class="fa-solid fa-globe"></i> English (IN)</span>
-      <span class="icon-link">₹ INR</span>
-    </div>
-    <div class="social-icons">
-      <i class="fa-brands fa-facebook-f"></i>
-      <i class="fa-brands fa-x-twitter"></i>
-      <i class="fa-brands fa-instagram"></i>
-    </div>
-  </div>
-</div>
