@@ -202,6 +202,57 @@
         
         .sub-footer-right { display: flex; align-items: center; gap: 24px; }
         .social-icons { display: flex; gap: 15px; font-size: 18px; }
+        /* Tablet (max 1024px) */
+        @media (max-width: 1024px) {
+            .card-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* Mobile (max 600px) */
+        @media (max-width: 600px) {
+            .card-container {
+                grid-template-columns: repeat(2, 1fr); /* YE HAI MAGIC: 2 Columns */
+                gap: 10px;
+                padding: 10px;
+            }
+
+            .first span {
+                font-size: 20px;
+            }
+
+            nav {
+                padding: 0 10px;
+            }
+
+            .logo img {
+                width: 80px;
+            }
+
+            .right ul {
+                display: none; /* Mobile pe menu hide kar diya taaki messy na dikhe */
+            }
+        }
+       div.stay{
+        
+    font-size: 14px;
+    color: #222;
+    margin-bottom: 2px;
+    font-weight: 400;
+    text-align: center;
+     margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Circular', -apple-system, sans-serif;
+            padding: 15px;
+            color: #222; /* Dark text below image */
+            font-weight: bold;
+            font-size: 1.1rem;
+
+       }
+        
+        
+
     </style>
 </head>
 <body>
@@ -223,13 +274,22 @@
     </header>
 
     <main>
+        
         <section class="first">
             <span>"Where comfort meets your wanderlust."</span>
             <p>Step away from the rush and into a space crafted for your peace.</p>
         </section>
 
+
+        <div class="stay">
+            <p>stay this weekend in Juhu</p>
+        </div>
+        
+
         <div class="card-container">
+             
             <div class="card">
+               
                 <div class="card-image">
                     <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80" alt="Beautiful Goa Beach Villa">
                 </div>
@@ -254,6 +314,13 @@
                 <div class="card-title">Cottage in Daman</div>
             </div>
         </div>
+
+
+        <div class="stay">
+            <p>What about this weekend in karnataka</p>
+        </div>
+
+
         <div class="card-container">
             <div class="card">
                 <div class="card-image">
@@ -280,6 +347,13 @@
                 <div class="card-title">Cottage in europe</div>
             </div>
         </div>
+
+
+        <div class="stay">
+            <p>This Summer in Europe's Mountains</p>
+        </div>
+
+
         <div class="card-container">
             <div class="card">
                 <div class="card-image">
@@ -306,6 +380,12 @@
                 <div class="card-title">Cottage in Mountain</div>
             </div>
         </div>
+
+        <div class="stay">
+            <p>Summer Vaction in Greece</p>
+        </div>
+
+
         <div class="card-container">
             <div class="card">
                 <div class="card-image">
@@ -332,6 +412,12 @@
                 <div class="card-title">Cottage in Kashmir</div>
             </div>
         </div>
+
+        <div class="stay">
+            <p>Winter Vaction in Kashmir</p>
+        </div>
+
+
         <div class="card-container">
             <div class="card">
                 <div class="card-image">
