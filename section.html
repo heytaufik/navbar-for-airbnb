@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <style>
+            * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Circular', -apple-system, sans-serif;
+        }
+
+        header {
+            border-bottom: 1px solid #ebebeb;
+            padding: 15px 0;
+            background: white;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo img {
+            width: 102px;
+            height: auto;
+        }
+
+        .right ul {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+        }
+
+        .right ul li {
+            font-weight: 500;
+            cursor: pointer;
+            font-size: 15px;
+        }
+        body {
+    font-family: 'Inter', sans-serif; /* Airbnb use circular but Inter is close */
+    color: #222;
+    padding: 20px;
+}
+
+.listing-container {
+    max-width: 1120px;
+    margin: 0 auto;
+}
+
+/* Header */
+.listing-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 20px;
+    max-width: 1120px;
+   margin: 10px ;
+    padding-top: 24px 1px;
+
+}
+
+.listing-header h1 {
+    font-size: 26px;
+    font-weight: 600;
+}
+
+/* Photo Grid */
+
+.photo-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: 200px 200px;
+    gap: 8px;
+    border-radius: 12px;
+    overflow: hidden;
+     /* Round corners ke liye */
+}
+
+
+.photo-grid img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: filter 0.3s;
+    border-radius: 17px;
+    overflow: hidden;
+}
+
+.photo-grid img:hover {
+    filter: brightness(0.9);
+}
+
+.main-img {
+    grid-row: span 2;
+    border-radius: 17px;
+    overflow: hidden;
+}
+
+.bottom-right {
+    position: relative;
+}
+
+.show-all-btn {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: white;
+    border: 1px solid black;
+    padding: 8px 15px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* Info Section */
+.listing-info {
+    margin-top: 30px;
+}
+
+.left-info h2 {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.left-info p {
+    color: #717171;
+    margin-top: 4px;
+}
+
+/* Guest Favorite Box */
+.guest-favorite {
+    margin-top: 25px;
+    padding: 24px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 600px;
+}
+
+.badge {
+    text-align: center;
+    font-size: 14px;
+}
+
+.badge-text {
+    flex: 1;
+    margin: 0 20px;
+    font-size: 14px;
+    color: #222;
+}
+
+.rating-info {
+    text-align: right;
+}
+        </style>
+        <nav>
+            <div class="logo">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/Airbnb_Logo_B%C3%A9lo.svg" alt="Logo">
+            </div>
+            <div class="right">
+                <ul>
+                    <li>Products ▾</li>
+                    <li>Pricing ▾</li>
+                    <li>Resources ▾</li>
+                    <li>About us ▾</li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div class="listing-container">
+    <div class="listing-header">
+        <h1>B 5003 Wabi Sabi Studio Apartment Juhu</h1>
+        <div class="header-actions">
+            <span><i class="fa-solid fa-arrow-up-from-bracket"></i> Check in </span>
+            <span><i class="fa-regular fa-heart"></i> Now</span>
+        </div>
+    </div>
+
+    <div class="photo-grid">
+        <div class="main-img">
+            <img src="https://i.pinimg.com/736x/ed/9e/ee/ed9eee3572e6ec8893fc6136da5e2c37.jpg" alt="Main Room">
+        </div>
+        <div class="sub-img"><img src="https://i.pinimg.com/736x/0b/bb/dd/0bbbdd71bc5668a6df3a1289bf52e117.jpg" alt="Dining"></div>
+        <div class="sub-img top-right"><img src="https://i.pinimg.com/1200x/78/ad/20/78ad20137dbd73589096be3d38e74bb5.jpg" alt="Lock"></div>
+        <div class="sub-img"><img src="https://i.pinimg.com/736x/46/4e/9e/464e9e8f05e53281a01584395c67024e.jpg" alt="Kitchen"></div>
+        <div class="sub-img bottom-right">
+            <img src="https://i.pinimg.com/736x/52/c6/49/52c6499a391ab1749b5b64af7b9bc638.jpg" alt="Bedroom">
+            <button class="show-all-btn">Show all photos</button>
+        </div>
+    </div>
+
+    <div class="listing-info">
+        <div class="left-info">
+            <h2>Entire serviced apartment in Mumbai, India</h2>
+            <p>2 guests · 1 bedroom · 1 bed · 1 bathroom</p>
+            
+            <div class="guest-favorite">
+                <div class="badge">
+                    <span class="laurel">🏆</span>
+                    <strong>Guest favourite</strong>
+                </div>
+                <div class="badge-text">
+                    One of the most loved homes on Airbnb, according to guests
+                </div>
+                <div class="rating-info">
+                    <strong>4.82</strong>
+                    <span class="stars">★★★★★</span>
+                    <span class="reviews">96 Reviews</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    
+</body>
+</html>
